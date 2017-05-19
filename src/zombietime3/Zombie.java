@@ -7,7 +7,7 @@ package zombietime3;
 
 /**
  *
- * @author javier
+ * @author NataliaPabon
  */
 public class Zombie {
 

@@ -9,7 +9,7 @@ import javax.swing.JFrame;
 
 /**
  *
- * @author javier
+ * @author NataliaPabon
  */
 public class ZOMBIETIME3 {
 

@@ -12,7 +12,7 @@ import javax.swing.ImageIcon;
 
 /**
  *
- * @author javier
+ * @author NataliaPabon
  */
 public class Naves {
 
