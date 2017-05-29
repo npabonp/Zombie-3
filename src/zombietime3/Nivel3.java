@@ -2,6 +2,7 @@ package zombietime3;
 
 import javax.swing.*;
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.Graphics;
@@ -18,6 +19,8 @@ import java.util.Random;
  */
 public final class Nivel3 extends JPanel implements ActionListener, KeyListener {
 
+    private static Nivel3 instance3 = null;
+
     private int m; // meteoritos
 
     private Zombie roberto = new Zombie(100, 350);
@@ -33,7 +36,8 @@ public final class Nivel3 extends JPanel implements ActionListener, KeyListener 
     private ArrayList<Naves> bordeNaves;
     private ArrayList<Naves> colision = new ArrayList<>();
 
-    public Nivel3() {
+    private Nivel3() {
+
         this.addKeyListener(this);
         setFocusable(true);
         zombieimg = loadImage("ZRunn.png");
@@ -44,6 +48,13 @@ public final class Nivel3 extends JPanel implements ActionListener, KeyListener 
         timer.start();
         this.bordeNaves = new ArrayList<>();
         navecitas();
+    }
+
+    public static Nivel3 getInstance3() {
+        if (instance3 == null) {
+            instance3 = new Nivel3();
+        }
+        return instance3;
     }
 
     public void navecitas() {
@@ -62,22 +73,30 @@ public final class Nivel3 extends JPanel implements ActionListener, KeyListener 
         super.paintComponent(g);
         g.drawImage(fondo, 0, 0, 800, 500, null);
         if (roberto.getColisiones() < 10) {
-
+            if (bordeNaves.isEmpty()) {
+                System.out.println("HAZ GANADOO");
+            }
             g.drawImage(zombieimg, roberto.getX1(), 350, roberto.getX2(), 464,
                     (this.secuencia * 322), 0, (this.secuencia * 322) + 322, 388, this);
 
-            g.drawString("Colisiones", 600, 250);
+            g.setColor(Color.WHITE);
+            Font myFont = new Font("Courier New", 1, 20);
+
+            g.setFont(myFont);
+            g.drawString("Colisiones", 600, 100);
             g.drawString(": " + roberto.getColisiones(), 670, 250);
             int xr = 0; //coordenadas del objeto que cae
             int yr = 0;
             for (int i = 0; i < bordeNaves.size(); i++) {
                 Random l = new Random();
-                int in = Math.abs(l.nextInt() % 10000);
+
                 xr = this.bordeNaves.get(i).getX();
                 yr = this.bordeNaves.get(i).getY();
 
                 if (this.bordeNaves.get(i).getY() > 500) {
-                    this.bordeNaves.get(i).setY(-in);
+
+                    bordeNaves.remove(i);
+                    continue;
                 }
                 g.drawImage(naveEspacial, xr, yr, 80, 80, this);
 

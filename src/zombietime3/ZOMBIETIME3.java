@@ -17,7 +17,7 @@ public class ZOMBIETIME3 {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        TestPaintComponent frame = new TestPaintComponent();
+        Frame3 frame = new Frame3();
         frame.setTitle("ZombieTime3");
         frame.setSize(800,500);
         frame.setLocationRelativeTo(null);
